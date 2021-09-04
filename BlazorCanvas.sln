@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31612.314
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorCanvas.Docs", "BlazorCanvas.Docs\BlazorCanvas.Docs.csproj", "{0CF98820-BDC2-4570-B3AD-AD1E2CCA8B1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorCanvas", "BlazorCanvas\BlazorCanvas.csproj", "{FED3E06D-667D-4B3C-9A04-B0CF8050F432}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CF98820-BDC2-4570-B3AD-AD1E2CCA8B1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CF98820-BDC2-4570-B3AD-AD1E2CCA8B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CF98820-BDC2-4570-B3AD-AD1E2CCA8B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CF98820-BDC2-4570-B3AD-AD1E2CCA8B1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FED3E06D-667D-4B3C-9A04-B0CF8050F432}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FED3E06D-667D-4B3C-9A04-B0CF8050F432}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FED3E06D-667D-4B3C-9A04-B0CF8050F432}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FED3E06D-667D-4B3C-9A04-B0CF8050F432}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CC9CCBE7-28CA-4404-AAB9-AA19B90E4173}
+	EndGlobalSection
+EndGlobal
