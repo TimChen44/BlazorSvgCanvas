@@ -3,19 +3,7 @@
 <div style="border:1px black solid">
 	<BzCanvas Width=800 Height=600 @ref="@BzCanvas"></BzCanvas>
 </div>
-@BzCanvas?.Width
-<br />
-@BzCanvas?.Height
-<br />
-@BzCanvas?.Viewer.Zoom
-<br />
-<button @onclick="OnRef">刷新</button>
 
 @code{
 	BzCanvas BzCanvas;
-
-	void OnRef(){
-		StateHasChanged();
-	}
-
 }

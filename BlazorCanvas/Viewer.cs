@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Web;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,25 +9,19 @@ using System.Threading.Tasks;
 
 namespace BlazorCanvas
 {
-    public class Viewer
+    public class Viewer : ComponentBase
     {
+        [CascadingParameter]
+        public BzCanvas BzCanvas { get; set; }
 
-        private readonly BzCanvas BzCanvas;
-
-        public Viewer(BzCanvas bzCanvas)
+        protected override void OnInitialized()
         {
-            BzCanvas = bzCanvas;
-
-
-        }
-
-        public void Init()
-        {
-            //视口默认为Svg大小
+            this.BzCanvas?.AddComponents(this);
             BoxWidth = BzCanvas.SvgWidth;
             BoxHeight = BzCanvas.SvgHeight;
-
+            base.OnInitialized();
         }
+
 
         /// <summary>
         /// 零点坐标（默认为画板中间）
@@ -113,15 +108,12 @@ namespace BlazorCanvas
                 var tWidth = BoxWidth * 0.2f;
                 var tHeight = BoxHeight * 0.2f;
 
-
                 //分别设置视口坐标和大小
                 ZeroX -= tWidth * tMouseX;
                 ZeroY -= tHeight * tMouseY;
 
                 BoxWidth += tWidth;
                 BoxHeight += tHeight;
-
-                Console.WriteLine($"{tMouseY} {tHeight} {ZeroY} {BoxHeight}");
             }
             else
             {//放大
@@ -137,8 +129,6 @@ namespace BlazorCanvas
 
                 BoxWidth -= tWidth;
                 BoxHeight -= tHeight;
-
-                Console.WriteLine($"{tMouseY} {tHeight} {ZeroY} {BoxHeight}");
             }
 
 

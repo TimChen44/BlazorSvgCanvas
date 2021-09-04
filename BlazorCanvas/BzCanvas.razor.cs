@@ -48,13 +48,18 @@ namespace BlazorCanvas
 
         public BzCanvas()
         {
-            Viewer = new Viewer(this);
+
+        }
+
+        public void AddComponents(ComponentBase component)
+        {
+            if (component is Viewer)
+                Viewer = component as Viewer;
         }
 
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            Viewer.Init();
         }
 
 
