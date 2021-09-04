@@ -16,6 +16,16 @@ namespace BlazorCanvas
         public Viewer(BzCanvas bzCanvas)
         {
             BzCanvas = bzCanvas;
+
+
+        }
+
+        public void Init()
+        {
+            //视口默认为Svg大小
+            BoxWidth = BzCanvas.SvgWidth;
+            BoxHeight = BzCanvas.SvgHeight;
+
         }
 
         /// <summary>
@@ -24,18 +34,27 @@ namespace BlazorCanvas
         public double ZeroX = 0;
         public double ZeroY = 0;
 
-        public double Width = 0;
-        public double Height = 0;
+        /// <summary>
+        /// 视口的大小
+        /// </summary>
+        public double BoxWidth = 0;
+        public double BoxHeight = 0;
 
-        public string ViewBoxBind => $"{ZeroX} {ZeroY} {Width * Zoom} {Height * Zoom}";
+        public string ViewBoxBind => $"{ZeroX} {ZeroY} {BoxWidth} {BoxHeight}";
 
         //缩放比例
-        public float Zoom = 1;
+        public double Zoom
+        {
+            get
+            {
+                return BoxWidth / BzCanvas.SvgWidth;
+            }
+        }
 
         //最小比例
-        private float MinZoom = 0.01f;
+        private float MinZoom = 0.2f;
         //最大比例
-        private float MaxZoom = 100;
+        private float MaxZoom = 5;
 
 
         //鼠标中键按下
@@ -50,8 +69,8 @@ namespace BlazorCanvas
         public void MouseDown(MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Middle) IsMouseMiddleDown = true;
-            OldMouseX = e.ClientX;
-            OldMouseY = e.ClientY;
+            OldMouseX = e.OffsetX;
+            OldMouseY = e.OffsetY;
         }
 
         public void MouseUp(MouseEventArgs e)
@@ -64,8 +83,8 @@ namespace BlazorCanvas
         {
             if (IsMouseMiddleDown == true)
             {//鼠标中键移动图纸
-                var newMouseX = e.ClientX;
-                var newMouseY = e.ClientY;
+                var newMouseX = e.OffsetX;
+                var newMouseY = e.OffsetY;
 
                 var x = newMouseX - OldMouseX;
                 var y = newMouseY - OldMouseY;
@@ -82,29 +101,40 @@ namespace BlazorCanvas
         public void MouseWheel(WheelEventArgs e)
         {
             //鼠标滚轮滚动图纸
-            double  tZeroX = 0;
-            double tZeroY = 0;
+            //计算鼠标的坐标位置相对于画板的比例
+            var tMouseX = e.OffsetX / BzCanvas.SvgWidth;
+            var tMouseY = e.OffsetY / BzCanvas.SvgHeight;
+
             if (e.DeltaY > 0)
-            {
-                if (Zoom == MaxZoom) return;
+            {//缩小
+                if (Zoom > (1 / MinZoom)) return;
 
-                Zoom = Zoom * 1.25f;
-                if (Zoom > MaxZoom) Zoom = MaxZoom;
+                //计算缩放时宽高改变量
+                var tWidth = BoxWidth * 0.2f;
+                var tHeight = BoxHeight * 0.2f;
 
-                //tZeroX = (e.ClientX - ZeroX) - (e.ClientX - ZeroX) * 1.25f;
-                //tZeroY = (e.ClientY - ZeroY) - (e.ClientY - ZeroY) * 1.25f;
+                //分别设置视口坐标和大小
+                ZeroX -= tWidth * tMouseX;
+                ZeroY -= tHeight * tMouseY;
 
+                BoxWidth += tWidth * (1 - tMouseX);
+                BoxHeight += tHeight * (1 - tMouseY);
             }
             else
-            {
+            {//放大
+                if (Zoom < (1 / MaxZoom)) return;
 
-                if (Zoom == MinZoom) return;
+                //计算缩放时宽高改变量
+                var tWidth = BoxWidth * 0.2f;
+                var tHeight = BoxHeight * 0.2f;
 
-                Zoom = Zoom * 0.8f;
-                if (Zoom < MinZoom) Zoom = MinZoom;
+                //分别设置视口坐标和大小
+                ZeroX += tWidth * tMouseX;
+                ZeroY += tHeight * tMouseY;
 
-                //tZeroX = (e.ClientX - ZeroX) - (e.ClientX - ZeroX) * 0.8f;
-                //tZeroY = (e.ClientY - ZeroY) - (e.ClientY - ZeroY) * 0.8f;
+                BoxWidth -= tWidth * (1 - tMouseX);
+                BoxHeight -= tHeight * (1 - tMouseY);
+
             }
 
 
@@ -114,10 +144,10 @@ namespace BlazorCanvas
         /// 设置缩放
         /// </summary>
         /// <param name="zoom"></param>
-        public void SetZoom(float zoom)
-        {
-            Zoom = zoom;
-        }
+        //public void SetZoom(float zoom)
+        //{
+        //    Zoom = zoom;
+        //}
         public void SetZero(int x, int y)
         {
             ZeroX = x;

@@ -11,11 +11,40 @@ namespace BlazorCanvas
 {
     public partial class BzCanvas
     {
-        private Viewer Viewer { get; set; } 
+        public Viewer Viewer { get; set; }
 
-        //TODO:将来需要支持百分比宽度
-        [Parameter] public int Width { get; set; }
-        [Parameter] public int Height { get; set; }
+        /// <summary>
+        /// 控件宽度
+        /// </summary>
+        [Parameter] public string Width { get; set; }
+        /// <summary>
+        /// 控件高度
+        /// </summary>
+        [Parameter] public string Height { get; set; }
+
+
+        //TODO:此处需要通过JS交互获得证实的Svg尺寸，应为宽度可以设置百分比，或者界面发生调整，目前假设不使用百分比
+        private int _SvgWidth;
+        public int SvgWidth
+        {
+            get
+            {
+                int.TryParse(Width, out int _SvgWidth);
+                return _SvgWidth;
+            }
+            set => _SvgWidth = value;
+        }
+
+        private int _SvgHeight;
+        public int SvgHeight
+        {
+            get
+            {
+                int.TryParse(Height, out int _SvgHeight);
+                return _SvgHeight;
+            }
+            set => _SvgHeight = value;
+        }
 
         public BzCanvas()
         {
@@ -25,8 +54,7 @@ namespace BlazorCanvas
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            Viewer.Width = Width;
-            Viewer.Height = Height;
+            Viewer.Init();
         }
 
 
@@ -49,6 +77,14 @@ namespace BlazorCanvas
         {
             Viewer.MouseWheel(e);
         }
+
+        //      /// <summary>
+        //      /// 获得一些
+        //      /// </summary>
+        //      void string GetDebugInfo()
+        //{
+
+        //}
 
     }
 }
