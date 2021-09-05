@@ -73,7 +73,6 @@ namespace BlazorCanvas
             if (e.Button == MouseButtons.Middle) IsMouseMiddleDown = false;
         }
 
-
         public void MouseMove(MouseEventArgs e)
         {
             if (IsMouseMiddleDown == true)
@@ -148,6 +147,20 @@ namespace BlazorCanvas
             ZeroY = y;
         }
 
+
+        /// <summary>
+        /// 鼠标坐标点变换到显示坐标点
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public (double X,double Y) MousePointToLocal(MouseEventArgs e)
+        {
+            var tMouseX = e.OffsetX / BzCanvas.SvgWidth;
+            var tMouseY = e.OffsetY / BzCanvas.SvgHeight;
+            var x = ZeroX + tMouseX * this.BoxWidth;
+            var y = ZeroY + tMouseY * this.BoxHeight;
+            return new(x, y);
+        }
     }
 
     public static class MouseButtons

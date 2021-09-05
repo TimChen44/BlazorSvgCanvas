@@ -13,6 +13,8 @@ namespace BlazorCanvas
     {
         public Viewer Viewer { get; set; }
 
+        public SelectionBox SelectionBox { get; set; }
+
         /// <summary>
         /// 控件宽度
         /// </summary>
@@ -51,20 +53,25 @@ namespace BlazorCanvas
         {
             if (component is Viewer)
                 Viewer = component as Viewer;
+            else if (component is SelectionBox)
+                SelectionBox = component as SelectionBox;
         }
 
 
         public void OnMouseDown(MouseEventArgs e)
         {
             Viewer.MouseDown(e);
+            SelectionBox.MouseDown(e);
         }
         public void OnMouseUp(MouseEventArgs e)
         {
             Viewer.MouseUp(e);
+            SelectionBox.MouseUp(e);
         }
         public void OnMouseMove(MouseEventArgs e)
         {
             Viewer.MouseMove(e);
+            SelectionBox.MouseMove(e);
         }
         public void OnWheel(WheelEventArgs e)
         {
