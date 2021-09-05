@@ -1,9 +1,32 @@
 ﻿@page "/"
 
-<div style="border:1px black solid">
-	<BzCanvas Width=800 Height=600 @ref="@BzCanvas"></BzCanvas>
-</div>
+<div style="display:flex">
+	<div style="border:1px black solid;flex:0 0 auto">
+		<BzCanvas Width=800 Height=600 @ref="@BzCanvas">
+			<Backgrounder>
+				<BzBackgrounder></BzBackgrounder>
+			</Backgrounder>
 
-@code{
+
+		</BzCanvas>
+	</div>
+	<div style="flex:auto">
+		<button @onclick="OnDebug1">Debug1</button>
+		<button @onclick="OnDebug2">Debug2</button>
+	</div>
+</div>
+@code {
 	BzCanvas BzCanvas;
+
+	void OnDebug1()
+	{
+		var r = new Random();
+
+
+	}
+
+	void OnDebug2()
+	{
+		
+	}
 }

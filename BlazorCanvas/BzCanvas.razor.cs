@@ -46,22 +46,12 @@ namespace BlazorCanvas
             set => _SvgHeight = value;
         }
 
-        public BzCanvas()
-        {
-
-        }
 
         public void AddComponents(ComponentBase component)
         {
             if (component is Viewer)
                 Viewer = component as Viewer;
         }
-
-        protected override void OnInitialized()
-        {
-            base.OnInitialized();
-        }
-
 
 
         public void OnMouseDown(MouseEventArgs e)
@@ -72,24 +62,16 @@ namespace BlazorCanvas
         {
             Viewer.MouseUp(e);
         }
-
         public void OnMouseMove(MouseEventArgs e)
         {
             Viewer.MouseMove(e);
         }
-
         public void OnWheel(WheelEventArgs e)
         {
             Viewer.MouseWheel(e);
         }
 
-        //      /// <summary>
-        //      /// 获得一些
-        //      /// </summary>
-        //      void string GetDebugInfo()
-        //{
-
-        //}
-
+        [Parameter]
+        public RenderFragment Backgrounder { get; set; }
     }
 }

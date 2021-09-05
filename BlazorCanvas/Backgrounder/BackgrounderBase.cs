@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlazorCanvas
 {
-    public partial class BzBackgrounder
+    public class BackgrounderBase : ComponentBase
     {
-        public void OnMouseDown()
-        {
-
-        }
     }
 }

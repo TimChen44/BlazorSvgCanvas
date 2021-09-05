@@ -1,0 +1,34 @@
+﻿@namespace BlazorCanvas
+@inherits BackgrounderBase
+
+<line x1="@Line1X1" y1="0" x2="@Line1X2" y2="0"
+	  style="stroke:rgb(100,100,100);stroke-width:1" />
+<line x1="0" y1="@Line2Y1" x2="0" y2="@Line2Y2"
+	  style="stroke:rgb(100,100,100);stroke-width:1" />
+
+	  @for (double y = Math.Floor(Line2Y1 / 100) * 100; y <= Line2Y2; y += 50)
+{
+	<line x1="@Line1X1" y1="@y" x2="@Line1X2" y2="@y"
+	  style="stroke:rgb(100,100,100);stroke-width:0.2" />
+}
+
+@for (double x = Math.Floor(Line1X1 / 100) * 100; x <= Line1X2; x += 50)
+{
+	<line x1="@x" y1="@Line2Y1" x2="@x" y2="@Line2Y2"
+	  style="stroke:rgb(100,100,100);stroke-width:0.2" />
+}
+
+@code {
+
+	[CascadingParameter]
+	public BzCanvas BzCanvas { get; set; }
+
+	public double Line1X1 => BzCanvas.Viewer.ZeroX;
+
+	public double Line1X2 => BzCanvas.Viewer.ZeroX + BzCanvas.Viewer.BoxWidth;
+
+	public double Line2Y1 => BzCanvas.Viewer.ZeroY;
+
+	public double Line2Y2 => BzCanvas.Viewer.ZeroY + BzCanvas.Viewer.BoxHeight;
+
+}
