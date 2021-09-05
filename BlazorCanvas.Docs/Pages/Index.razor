@@ -6,8 +6,13 @@
 			<Backgrounder>
 				<BzBackgrounder></BzBackgrounder>
 			</Backgrounder>
+			<Element>
+				@foreach (var item in rf)
+				{
+					<ElmDebug Rect="item"></ElmDebug>
+				}
 
-
+			</Element>
 		</BzCanvas>
 	</div>
 	<div style="flex:auto">
@@ -18,15 +23,20 @@
 @code {
 	BzCanvas BzCanvas;
 
+	List<System.Drawing.RectangleF> rf = new List<System.Drawing.RectangleF>();
+
 	void OnDebug1()
 	{
 		var r = new Random();
-
+		for (int i = 0; i <= 50; i++)
+		{
+			rf.Add(new System.Drawing.RectangleF(r.Next(1000), r.Next(1000), 25, 25));
+		}
 
 	}
 
 	void OnDebug2()
 	{
-		
+
 	}
 }

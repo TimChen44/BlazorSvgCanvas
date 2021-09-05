@@ -73,5 +73,8 @@ namespace BlazorCanvas
 
         [Parameter]
         public RenderFragment Backgrounder { get; set; }
+
+        [Parameter]
+        public RenderFragment Element { get; set; }
     }
 }
