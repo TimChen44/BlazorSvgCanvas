@@ -16,6 +16,6 @@ namespace BlazorCanvas
         [Parameter]
         public RectangleF Rect { get; set; }//不能用属性，因为属性不能给修改内部值
 
-
+        
     }
 }
