@@ -42,7 +42,7 @@ namespace BlazorCanvas
         {
             get
             {
-                return BoxWidth / BzCanvas.SvgWidth;
+                return 1 / (BoxWidth / BzCanvas.SvgWidth);
             }
         }
 
@@ -83,8 +83,8 @@ namespace BlazorCanvas
                 var x = newMouseX - OldMouseX;
                 var y = newMouseY - OldMouseY;
 
-                ZeroX -= x * Zoom;
-                ZeroY -= y * Zoom;
+                ZeroX -= x / Zoom;
+                ZeroY -= y / Zoom;
 
                 OldMouseX = newMouseX;
                 OldMouseY = newMouseY;
@@ -102,7 +102,7 @@ namespace BlazorCanvas
 
             if (e.DeltaY > 0)
             {//缩小
-                if (Zoom > (1 / MinZoom)) return;
+                if (Zoom < MinZoom) return;
 
                 //计算缩放时宽高改变量
                 var tWidth = BoxWidth * 0.2f;
@@ -117,7 +117,7 @@ namespace BlazorCanvas
             }
             else
             {//放大
-                if (Zoom < (1 / MaxZoom)) return;
+                if (Zoom > MaxZoom) return;
 
                 //计算缩放时宽高改变量
                 var tWidth = BoxWidth * 0.2f;
@@ -154,7 +154,7 @@ namespace BlazorCanvas
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>
-        public (double X,double Y) MousePointToLocal(MouseEventArgs e)
+        public (double X, double Y) MousePointToLocal(MouseEventArgs e)
         {
             var tMouseX = e.OffsetX / BzCanvas.SvgWidth;
             var tMouseY = e.OffsetY / BzCanvas.SvgHeight;
