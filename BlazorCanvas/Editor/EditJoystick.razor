@@ -1,1 +1,11 @@
 ﻿@namespace BlazorCanvas
+
+@if (Element != null)
+{
+    <g transform="translate(@ERect.X @ERect.Y)">
+
+        <rect x="0" y="0" width="@JoyWidth" height="@JoyHeight"
+          style="stroke:black;stroke-width:0.5;fill:white;" />
+
+    </g>
+}
