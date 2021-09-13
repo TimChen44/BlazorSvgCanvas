@@ -4,15 +4,28 @@
 {
     <g transform="translate(@ERect.X @ERect.Y)">
 
-        <rect x="-0.25" y="-0.25" width="@JoyWidth" height="@JoyHeight" class="joy"/>
+        <rect x="-0.25" y="-0.25" width="@JoyWidth" height="@JoyHeight" class="joy" />
 
+        <rect x="-0.25" y="@(ERect.Height/2 - JoyHeight/2)" width="@JoyWidth" height="@JoyHeight" class="joy" />
+
+        <rect x="-0.25" y="@(ERect.Height- JoyHeight + 0.25)" width="@JoyWidth" height="@JoyHeight" class="joy" />
+
+        <rect x="@(ERect.Width/2 - JoyWidth/2)" y="-0.25" width="@JoyWidth" height="@JoyHeight" class="joy" />
+
+        <rect x="@(ERect.Width - JoyWidth + 0.25)" y="-0.25" width="@JoyWidth" height="@JoyHeight" class="joy" />
+
+        <rect x="@(ERect.Width - JoyWidth + 0.25)" y="@(ERect.Height/2 - JoyHeight/2)" width="@JoyWidth" height="@JoyHeight" class="joy" />
+
+        <rect x="@(ERect.Width/2 - JoyWidth/2)" y="@(ERect.Height- JoyHeight + 0.25)" width="@JoyWidth" height="@JoyHeight" class="joy" />
+
+        <rect x="@(ERect.Width - JoyWidth + 0.25)" y="@(ERect.Height- JoyHeight + 0.25)" width="@JoyWidth" height="@JoyHeight" class="joy" />
     </g>
 }
 
 <style>
     .joy {
-        stroke:black;
-        stroke-width:0.5;
-        fill:white;
+        stroke: black;
+        stroke-width: 0.5;
+        fill: white;
     }
 </style>

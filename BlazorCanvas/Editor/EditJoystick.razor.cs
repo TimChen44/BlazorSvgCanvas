@@ -20,8 +20,12 @@ namespace BlazorCanvas
 
         public RectangleF ERect => Element.Rect;
 
-        public double JoyWidth => Math.Ceiling(10/ BzCanvas.Viewer.Zoom);
+        private double MaxWidth => ERect.Width / 3;
+        private double MaxHeight => ERect.Height / 3;
 
-        public double JoyHeight => Math.Ceiling(10 / BzCanvas.Viewer.Zoom);
+        private double ZoomSize => Math.Ceiling(10 / BzCanvas.Viewer.Zoom);
+
+        public double JoyWidth => ZoomSize > MaxWidth ? MaxWidth : ZoomSize;
+        public double JoyHeight => ZoomSize > MaxHeight ? MaxHeight : ZoomSize;
     }
 }
