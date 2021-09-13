@@ -92,7 +92,7 @@ namespace BlazorCanvas
                 }
                 else
                 {
-                    BoxSelectOver();
+                    BoxSelectOver(e);
                 }
 
             }
@@ -125,8 +125,15 @@ namespace BlazorCanvas
         /// <summary>
         /// 选择被框选的对象
         /// </summary>
-        private void BoxSelectOver()
+        private void BoxSelectOver(MouseEventArgs e)
         {
+
+            if (e.CtrlKey!=true)
+            {
+                //撤销以前的选择
+                BzCanvas.Editor.ClearSelected();
+            }
+
             RectangleF selectRect = new RectangleF((float)StartX, (float)StartY, (float)Width, (float)Height);
 
             if (IsLeftToRight == true)

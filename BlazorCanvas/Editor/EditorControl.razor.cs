@@ -28,6 +28,14 @@ namespace BlazorCanvas
         /// </summary>
         public ElementBase CurrentElement = null;
 
+        /// <summary>
+        /// 清除选的的对象
+        /// </summary>
+        public void ClearSelected()
+        {
+            SelectedElements.ForEach(x => x?.UnSelected());
+            SelectedElements.Clear();
+        }
 
         /// <summary>
         /// 添加选中的对象

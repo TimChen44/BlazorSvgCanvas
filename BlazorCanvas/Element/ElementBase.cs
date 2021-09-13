@@ -29,6 +29,18 @@ namespace BlazorCanvas
         /// </summary>
         public bool IsFocus { get; set; } = false;
 
+
+        /// <summary>
+        /// 清除对象选择
+        /// </summary>
+        public void UnSelected()
+        {
+            IsSelected = false;
+            IsFocus = false;
+            UnSelectedEvent();
+        }
+        protected virtual void UnSelectedEvent() { }
+
         /// <summary>
         /// 选择对象
         /// </summary>

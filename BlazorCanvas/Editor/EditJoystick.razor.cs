@@ -11,6 +11,7 @@ namespace BlazorCanvas
     public partial class EditJoystick
     {
         [Parameter]
+        [EditorRequired]
         public ElementBase Element { get; set; }
 
         [CascadingParameter]
