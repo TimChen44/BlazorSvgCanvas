@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
@@ -68,15 +69,6 @@ namespace BlazorCanvas
 
                 IsLeftToRight = StartX < end.X;
 
-                //StartX = StartX < end.X ? StartX : end.X;
-                //StartY = StartY < end.Y ? StartY : end.Y;
-
-                //var w = StartX - end.X;
-                //var h = StartY - end.Y;
-
-                //Width = w < 0 ? -w : w;
-                //Height = h < 0 ? -h : h;
-
                 EndX = end.X;
                 EndY = end.Y;
             }
@@ -89,17 +81,84 @@ namespace BlazorCanvas
                 IsMouseLeftDown = false;
                 SelectionBoxIsShow = false;
 
-                //var end = Viewer.MousePointToLocal(e.Location);
-                //if (end.Distance(Start) < 15)
-                //{//开始和结束距离短，认为是鼠标点击选择
-                //    PointSelectOver(e.Location);
-                //}
-                //else
-                //{
-                //    BoxSelectOver();
-                //}
+                var end = BzCanvas.Viewer.MousePointToLocal(e);
+
+                var distance = MathF.Sqrt((float)((end.X - StartX) * (end.X - StartX) + (end.Y - StartY) * (end.Y - StartY)));
+
+
+                if (distance < 15)
+                {//开始和结束距离短，认为是鼠标点击选择
+                    PointSelectOver(e);
+                }
+                else
+                {
+                    BoxSelectOver();
+                }
 
             }
         }
+
+        /// <summary>
+        /// 选择单个对象
+        /// </summary>
+        private void PointSelectOver(MouseEventArgs e)
+        {
+            //if (Control.ModifierKeys != Keys.Control)
+            //{
+            //    Editor.ClearSelected();
+            //}
+            //var point = Viewer.MousePointToLocal(mousePoint);
+            //foreach (var item in Canvas.Layers)
+            //{
+            //    if (item.IsActive == false) continue;
+            //    var elm = item.Elements.FirstOrDefault(x => x.Rect.Contains(point) == true);
+            //    if (elm != null)
+            //    {
+
+            //        Editor.AddSelected(new List<ObjElement>() { elm });
+            //        Editor.SetCurrent(elm);
+            //        return;
+            //    }
+            //}
+        }
+
+        /// <summary>
+        /// 选择被框选的对象
+        /// </summary>
+        private void BoxSelectOver()
+        {
+            RectangleF selectRect = new RectangleF((float)StartX, (float)StartY, (float)Width, (float)Height);
+
+            if (IsLeftToRight == true)
+            {//全部选中才算选中
+                BzCanvas.Editor.AddSelected(BzCanvas.Elements.AsParallel().Where(x => selectRect.Contains(x.Rect) == true).ToList());
+            }
+            else
+            {//相交就认为已经选中
+                BzCanvas.Editor.AddSelected(BzCanvas.Elements.AsParallel().Where(x => x.Rect.IntersectsWith(selectRect) == true).ToList());
+            }
+
+
+            //if (Control.ModifierKeys != Keys.Control)
+            //{
+            //    //撤销以前的选择
+            //    Editor.ClearSelected();
+            //}
+            //foreach (var item in Canvas.Layers)
+            //{
+            //    if (item.IsActive == false) continue;
+
+            //    if (IsLeftToRight == true)
+            //    {//全部选中才算选中
+            //        Editor.AddSelected(item.Elements.AsParallel().Where(x => Rect.Contains(x.Rect) == true).ToList());
+            //    }
+            //    else
+            //    {//相交就认为已经选中
+            //        Editor.AddSelected(item.Elements.AsParallel().Where(x => x.Rect.IntersectsWith(Rect) == true).ToList());
+            //    }
+            //}
+            //Editor.SetCurrent(Editor.SelectedElements.FirstOrDefault());
+        }
+
     }
 }

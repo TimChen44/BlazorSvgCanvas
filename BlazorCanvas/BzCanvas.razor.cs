@@ -15,6 +15,8 @@ namespace BlazorCanvas
 
         public SelectionBox SelectionBox { get; set; }
 
+        public EditorControl Editor { get; set; }
+
         /// <summary>
         /// 控件宽度
         /// </summary>
@@ -55,6 +57,10 @@ namespace BlazorCanvas
                 Viewer = component as Viewer;
             else if (component is SelectionBox)
                 SelectionBox = component as SelectionBox;
+            else if (component is EditorControl)
+                Editor = component as EditorControl;
+            else if (component is ElementBase)
+                Elements.Add(component as ElementBase);
         }
 
 
@@ -83,5 +89,7 @@ namespace BlazorCanvas
 
         [Parameter]
         public RenderFragment Element { get; set; }
+
+        public List<ElementBase> Elements { get; set; } = new List<ElementBase>();
     }
 }

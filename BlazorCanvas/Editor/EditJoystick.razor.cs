@@ -13,10 +13,14 @@ namespace BlazorCanvas
         [Parameter]
         public ElementBase Element { get; set; }
 
+        [CascadingParameter]
+        public BzCanvas BzCanvas { get; set; }
+
+
         public RectangleF ERect => Element.Rect;
 
-        public double JoyWidth => Math.Ceiling(Element.Rect.Width / 10);
+        public double JoyWidth => Math.Ceiling(10/ BzCanvas.Viewer.Zoom);
 
-        public double JoyHeight => Math.Ceiling(Element.Rect.Height / 10);
+        public double JoyHeight => Math.Ceiling(10 / BzCanvas.Viewer.Zoom);
     }
 }
