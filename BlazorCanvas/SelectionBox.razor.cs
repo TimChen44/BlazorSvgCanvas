@@ -134,7 +134,7 @@ namespace BlazorCanvas
                 BzCanvas.Editor.ClearSelected();
             }
 
-            RectangleF selectRect = new RectangleF((float)StartX, (float)StartY, (float)Width, (float)Height);
+            RectangleF selectRect = new RectangleF((float)X, (float)Y, (float)Width, (float)Height);
 
             if (IsLeftToRight == true)
             {//全部选中才算选中

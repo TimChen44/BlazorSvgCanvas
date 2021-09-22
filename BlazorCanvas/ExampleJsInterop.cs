@@ -1,4 +1,6 @@
 using Microsoft.JSInterop;
+using System;
+using System.Threading.Tasks;
 
 namespace BlazorCanvas;
 // This class provides an example of how JavaScript functionality can be wrapped
