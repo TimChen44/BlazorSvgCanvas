@@ -94,7 +94,6 @@ namespace BlazorCanvas
 
         public void MouseWheel(WheelEventArgs e)
         {
-            Console.WriteLine(Zoom);
             //鼠标滚轮滚动图纸
             //计算鼠标的坐标位置相对于画板的比例
             var tMouseX = e.OffsetX / BzCanvas.SvgWidth;

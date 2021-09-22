@@ -17,7 +17,6 @@ namespace BlazorCanvas
         [CascadingParameter]
         public BzCanvas BzCanvas { get; set; }
 
-
         public RectangleF ERect => Element.Rect;
 
         private double MaxWidth => ERect.Width / 3;
