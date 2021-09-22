@@ -107,12 +107,14 @@ namespace BlazorCanvas
             {
                 //撤销以前的选择
                 BzCanvas.Editor.ClearSelected();
+                BzCanvas.Editor.ClearFocus();
             }
             var point = BzCanvas.Viewer.MousePointToLocal(e);
             var elm = BzCanvas.Elements.AsParallel().FirstOrDefault(x => x.Rect.Contains(new PointF((float)point.X, (float)point.Y)));
             if (elm != null)
             {
                 BzCanvas.Editor.AddSelected(elm);
+                BzCanvas.Editor.SetFocus(elm);
             }
 
         }
@@ -127,6 +129,7 @@ namespace BlazorCanvas
             {
                 //撤销以前的选择
                 BzCanvas.Editor.ClearSelected();
+                BzCanvas.Editor.ClearFocus();
             }
 
             RectangleF selectRect = new RectangleF((float)X, (float)Y, (float)Width, (float)Height);
@@ -138,6 +141,11 @@ namespace BlazorCanvas
             else
             {//相交就认为已经选中
                 BzCanvas.Editor.AddSelected(BzCanvas.Elements.AsParallel().Where(x => x.Rect.IntersectsWith(selectRect) == true).ToList());
+            }
+
+            if (BzCanvas.Editor.FocusElement == null)
+            {
+                BzCanvas.Editor.SetFocus();
             }
 
 

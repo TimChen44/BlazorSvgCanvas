@@ -57,5 +57,20 @@ namespace BlazorCanvas
             base.OnInitialized();
         }
 
+        protected virtual void UnFocusEvent() { }
+
+        public void Focus()
+        {
+            IsFocus = true;
+            FocusEvent();
+        }
+        protected virtual void FocusEvent() { }
+
+        public void UnFocus()
+        {
+            IsFocus = false;
+            UnFocusEvent();
+        }
+
     }
 }

@@ -26,5 +26,7 @@ namespace BlazorCanvas
 
         public double JoyWidth => ZoomSize > MaxWidth ? MaxWidth : ZoomSize;
         public double JoyHeight => ZoomSize > MaxHeight ? MaxHeight : ZoomSize;
+
+        private string JoyClass => (Element?.IsFocus ?? false) ? "joy-focus" : "joy";
     }
 }

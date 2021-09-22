@@ -26,7 +26,7 @@ namespace BlazorCanvas
         /// <summary>
         /// 当前对象
         /// </summary>
-        public ElementBase CurrentElement = null;
+        public ElementBase? FocusElement = null;
 
         /// <summary>
         /// 清除选的的对象
@@ -53,5 +53,31 @@ namespace BlazorCanvas
             element.Selected();
         }
 
+        /// <summary>
+        /// 设置焦点对象
+        /// </summary>
+        /// <param name="element"></param>
+        public void SetFocus(ElementBase element)
+        {
+            FocusElement?.UnFocus();
+            FocusElement = element;
+            FocusElement?.Focus();
+        }
+
+
+        public void SetFocus()
+        {
+            FocusElement?.UnFocus();
+            if (SelectedElements.Count() > 0)
+            {
+                SetFocus(SelectedElements[0]);
+            }
+        }
+
+        public void ClearFocus()
+        {
+            FocusElement?.UnFocus();
+            FocusElement = null;
+        }
     }
 }
