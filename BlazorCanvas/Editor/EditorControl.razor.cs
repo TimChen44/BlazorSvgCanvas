@@ -45,9 +45,12 @@ namespace BlazorCanvas
         {
             SelectedElements.AddRange(elements);
             elements.ForEach(x => x?.Selected());
+        }
 
-            //SelectedObjElementsEvent?.Invoke(SelectedElements);
-
+        public void AddSelected(ElementBase element)
+        {
+            SelectedElements.Add(element);
+            element.Selected();
         }
 
     }

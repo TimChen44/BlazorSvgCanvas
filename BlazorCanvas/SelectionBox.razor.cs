@@ -103,23 +103,18 @@ namespace BlazorCanvas
         /// </summary>
         private void PointSelectOver(MouseEventArgs e)
         {
-            //if (Control.ModifierKeys != Keys.Control)
-            //{
-            //    Editor.ClearSelected();
-            //}
-            //var point = Viewer.MousePointToLocal(mousePoint);
-            //foreach (var item in Canvas.Layers)
-            //{
-            //    if (item.IsActive == false) continue;
-            //    var elm = item.Elements.FirstOrDefault(x => x.Rect.Contains(point) == true);
-            //    if (elm != null)
-            //    {
+            if (e.CtrlKey != true)
+            {
+                //撤销以前的选择
+                BzCanvas.Editor.ClearSelected();
+            }
+            var point = BzCanvas.Viewer.MousePointToLocal(e);
+            var elm = BzCanvas.Elements.AsParallel().FirstOrDefault(x => x.Rect.Contains(new PointF((float)point.X, (float)point.Y)));
+            if (elm != null)
+            {
+                BzCanvas.Editor.AddSelected(elm);
+            }
 
-            //        Editor.AddSelected(new List<ObjElement>() { elm });
-            //        Editor.SetCurrent(elm);
-            //        return;
-            //    }
-            //}
         }
 
         /// <summary>
@@ -128,7 +123,7 @@ namespace BlazorCanvas
         private void BoxSelectOver(MouseEventArgs e)
         {
 
-            if (e.CtrlKey!=true)
+            if (e.CtrlKey != true)
             {
                 //撤销以前的选择
                 BzCanvas.Editor.ClearSelected();
