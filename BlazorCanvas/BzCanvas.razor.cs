@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorCanvas.Element;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
@@ -61,6 +62,8 @@ namespace BlazorCanvas
                 Editor = component as EditorControl;
             else if (component is ElementBase)
                 Elements.Add(component as ElementBase);
+            else if (component is Input)
+                Inputs.Add(component as Input);
         }
 
 
@@ -91,5 +94,16 @@ namespace BlazorCanvas
         public RenderFragment Element { get; set; }
 
         public List<ElementBase> Elements { get; set; } = new List<ElementBase>();
+
+
+        #region 数据流
+
+        public DataFlow DataFlow { get; set; }
+
+
+        public List<Input> Inputs { get; set; } = new List<Input>();
+
+
+        #endregion
     }
 }

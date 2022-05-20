@@ -1,13 +1,19 @@
-﻿<CascadingValue Value="this">
-	<Viewer></Viewer>
-	<svg viewBox="@Viewer?.ViewBoxBind" width="@Width" height="@Height" xmlns="http://www.w3.org/2000/svg"
-		 @onmousedown="OnMouseDown" @onmouseup="OnMouseUp" @onmousemove="OnMouseMove" @onwheel="OnWheel">
+﻿@using BlazorCanvas.Element
+<CascadingValue Value="this">
+    <Viewer></Viewer>
+    <svg viewBox="@Viewer?.ViewBoxBind" width="@Width" height="@Height" xmlns="http://www.w3.org/2000/svg"
+         @onmousedown="OnMouseDown" @onmouseup="OnMouseUp" @onmousemove="OnMouseMove" @onwheel="OnWheel">
 
-		@Backgrounder
+        @Backgrounder
 
-		@Element
-		
-		<SelectionBox></SelectionBox>
-		<EditorControl></EditorControl>
-	</svg>
+        @Element
+
+        @foreach (var input in Inputs)
+        {
+            <Input Data="input"></Input>
+        }
+
+        <SelectionBox></SelectionBox>
+        <EditorControl></EditorControl>
+    </svg>
 </CascadingValue>

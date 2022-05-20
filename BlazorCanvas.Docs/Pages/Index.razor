@@ -16,12 +16,21 @@
 		</BzCanvas>
 	</div>
 	<div style="flex:auto">
+		<button @onclick="DF1">Debug1</button>
+
+		<hr />
 		<button @onclick="OnDebug1">Debug1</button>
 		<button @onclick="OnDebug2">Debug2</button>
 	</div>
 </div>
 @code {
 	BzCanvas BzCanvas;
+
+	void DF1()
+	{
+		BzCanvas.AddInput();
+	}
+
 
 	List<System.Drawing.RectangleF> rf = new List<System.Drawing.RectangleF>();
 
