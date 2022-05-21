@@ -17,10 +17,10 @@ namespace BlazorCanvas
         [CascadingParameter]
         public BzCanvas BzCanvas { get; set; }
 
-        public RectangleF ERect => Element.Rect;
+        public Rect ERect => Element.Rect;
 
-        private double MaxWidth => ERect.Width / 3;
-        private double MaxHeight => ERect.Height / 3;
+        private double MaxWidth => ERect.W  / 3;
+        private double MaxHeight => ERect.H / 3;
 
         private double ZoomSize => Math.Ceiling(10 / BzCanvas.Viewer.Zoom);
 

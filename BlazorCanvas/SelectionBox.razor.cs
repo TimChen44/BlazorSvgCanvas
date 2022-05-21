@@ -103,19 +103,19 @@ namespace BlazorCanvas
         /// </summary>
         private void PointSelectOver(MouseEventArgs e)
         {
-            if (e.CtrlKey != true)
-            {
-                //撤销以前的选择
-                BzCanvas.Editor.ClearSelected();
-                BzCanvas.Editor.ClearFocus();
-            }
-            var point = BzCanvas.Viewer.MousePointToLocal(e);
-            var elm = BzCanvas.Elements.AsParallel().FirstOrDefault(x => x.Rect.Contains(new PointF((float)point.X, (float)point.Y)));
-            if (elm != null)
-            {
-                BzCanvas.Editor.AddSelected(elm);
-                BzCanvas.Editor.SetFocus(elm);
-            }
+            //if (e.CtrlKey != true)
+            //{
+            //    //撤销以前的选择
+            //    BzCanvas.Editor.ClearSelected();
+            //    BzCanvas.Editor.ClearFocus();
+            //}
+            //var point = BzCanvas.Viewer.MousePointToLocal(e);
+            //var elm = BzCanvas.Elements.AsParallel().FirstOrDefault(x => x.Rect.Contains(new PointF((float)point.X, (float)point.Y)));
+            //if (elm != null)
+            //{
+            //    BzCanvas.Editor.AddSelected(elm);
+            //    BzCanvas.Editor.SetFocus(elm);
+            //}
 
         }
 
@@ -134,14 +134,14 @@ namespace BlazorCanvas
 
             RectangleF selectRect = new RectangleF((float)X, (float)Y, (float)Width, (float)Height);
 
-            if (IsLeftToRight == true)
-            {//全部选中才算选中
-                BzCanvas.Editor.AddSelected(BzCanvas.Elements.AsParallel().Where(x => selectRect.Contains(x.Rect) == true).ToList());
-            }
-            else
-            {//相交就认为已经选中
-                BzCanvas.Editor.AddSelected(BzCanvas.Elements.AsParallel().Where(x => x.Rect.IntersectsWith(selectRect) == true).ToList());
-            }
+            //if (IsLeftToRight == true)
+            //{//全部选中才算选中
+            //    BzCanvas.Editor.AddSelected(BzCanvas.Elements.AsParallel().Where(x => selectRect.Contains(x.Rect) == true).ToList());
+            //}
+            //else
+            //{//相交就认为已经选中
+            //    BzCanvas.Editor.AddSelected(BzCanvas.Elements.AsParallel().Where(x => x.Rect.IntersectsWith(selectRect) == true).ToList());
+            //}
 
             if (BzCanvas.Editor.FocusElement == null)
             {

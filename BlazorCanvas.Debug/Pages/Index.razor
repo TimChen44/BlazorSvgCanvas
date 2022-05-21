@@ -1,0 +1,72 @@
+﻿@page "/"
+
+@using BlazorCanvas.Data
+
+<div style="display:flex">
+    <div style="border:1px black solid;flex:0 0 auto">
+        <BzCanvas Width=800 Height=600 @ref="@BzCanvas" DataFlow="@DataFlow">
+            <Backgrounder>
+                <BzBackgrounder></BzBackgrounder>
+            </Backgrounder>
+            <Element>
+                @foreach (var item in rf)
+                {
+                    @*<ElmDebug Rect="item"></ElmDebug>*@
+                }
+
+            </Element>
+        </BzCanvas>
+    </div>
+    <div style="flex:auto">
+        <button @onclick="DF1">创建数据源</button>
+        <button @onclick="DF2">创建节点</button>
+        <button @onclick="DF3">添加目标</button>
+        <hr />
+        <button @onclick="OnDebug1">Debug1</button>
+        <button @onclick="OnDebug2">Debug2</button>
+    </div>
+</div>
+
+@BzCanvas?.Flows?.FirstOrDefault()?.Data?.Trunks?.Count;
+
+@code {
+    BzCanvas BzCanvas;
+
+    DataFlow DataFlow = new DataFlow() { Flows = new List<FlowData>() { new FlowData() } };
+
+    void DF1()
+    {
+        DataFlow.Flows.First().Input = new InputData();
+      
+    }
+
+    void DF2()
+    {
+        DataFlow.Flows.First().Trunks.Add(new TrunkData());
+     
+    }
+
+    void DF3()
+    {
+        DataFlow.Flows.First().Output = new OutputData();
+    
+    }
+
+
+    List<System.Drawing.RectangleF> rf = new List<System.Drawing.RectangleF>();
+
+    void OnDebug1()
+    {
+        var r = new Random();
+        for (int i = 0; i <= 5; i++)
+        {
+            rf.Add(new System.Drawing.RectangleF(r.Next(1000), r.Next(1000), 25, 25));
+        }
+
+    }
+
+    void OnDebug2()
+    {
+        rf.RemoveAt(1);
+    }
+}

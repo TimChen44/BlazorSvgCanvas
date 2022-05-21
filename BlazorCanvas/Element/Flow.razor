@@ -1,7 +1,31 @@
 ﻿@inherits ElementBase
+<CascadingValue Value="this">
+    <g transform="translate(@Rect.LT.ToPoint())">
 
-@*流区域*@
+        @*流区域*@
+        @if (Data.Input != null)
+        {
+            <Input Data="Data.Input"></Input>
+        }
+        else
+        {
+            <rect x="0" y="0" width="@Input.Width" height="@Input.Height"
+              style="stroke:rgb(0,0,200);stroke-width:1;fill:silver;fill-opacity:0.25" />
+        }
 
-@code {
+        @if (Data?.Trunks != null)
+        {
+            for (int i = 0; i < Data.Trunks.Count; i++)
+            {
+                var trunk = Data.Trunks[i];
+                <Trunk Data="@trunk" X="@(Input.Width + i *Trunk.Width)"></Trunk>
+            }
+        }
 
-}
+        @if (Data.Output != null)
+        {
+            <Input Data="Data.Input" X="@(Input.Width + Data.Trunks.Count *Trunk.Width)"></Input>
+        }
+
+    </g>
+</CascadingValue>

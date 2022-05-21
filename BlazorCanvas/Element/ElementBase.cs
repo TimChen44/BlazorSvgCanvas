@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BlazorCanvas
 {
-    public abstract class ElementBase : ComponentBase
+    public abstract class ElementBase : ComponentBase, IDisposable
     {
         [CascadingParameter]
         public BzCanvas BzCanvas { get; set; }
@@ -17,7 +17,23 @@ namespace BlazorCanvas
         /// 当前对象的区域范围
         /// </summary>
         [Parameter]
-        public RectangleF Rect { get; set; }//不能用属性，因为属性不能给修改内部值
+        public Rect Rect { get; set; } = new Rect();//不能用属性，因为属性不能给修改内部值
+
+
+        [Parameter]
+        public int X
+        {
+            get => Rect.X;
+            set => Rect.X = value;
+        }
+
+        [Parameter]
+        public int Y
+        {
+            get => Rect.Y;
+            set => Rect.Y = value;
+        }
+
 
         #region 对象的四个边界
 
@@ -35,12 +51,12 @@ namespace BlazorCanvas
         /// <summary>
         /// 最右侧的坐标
         /// </summary>
-        public virtual float MaxRight() { return Rect.Right; }
+        public virtual float MaxRight() { return Rect.R; }
 
         /// <summary>
         /// 最底下的坐标
         /// </summary>
-        public virtual float MaxBottom() { return Rect.Bottom; }
+        public virtual float MaxBottom() { return Rect.B; }
 
         #endregion
 
@@ -80,6 +96,11 @@ namespace BlazorCanvas
         {
             this.BzCanvas?.AddComponents(this);
             base.OnInitialized();
+        }
+
+        public virtual void Dispose()
+        {
+            this.BzCanvas?.RemoveComponents(this);
         }
 
         protected virtual void UnFocusEvent() { }

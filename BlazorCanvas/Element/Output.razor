@@ -1,9 +1,10 @@
-﻿@inherits ElementBase
+﻿@inherits FlowNode
 
 @*数据流，用来填写目标的组件*@
 
-<h3>Root</h3>
-
-@code {
+@if (Data != null)
+{
+    <rect x="@Rect.X" y="@Rect.Y" width="@Rect.W" height="@Rect.H"
+      style="stroke:rgb(0,0,200);stroke-width:1;fill:red;fill-opacity:0.25" />
 
 }

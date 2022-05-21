@@ -60,12 +60,29 @@ namespace BlazorCanvas
                 SelectionBox = component as SelectionBox;
             else if (component is EditorControl)
                 Editor = component as EditorControl;
+            else if (component is Flow)
+            {
+                var flow = component as Flow;
+                flow.PreviousFlow = Flows.LastOrDefault();
+                Flows.Add(flow);
+            }
             else if (component is ElementBase)
                 Elements.Add(component as ElementBase);
-            else if (component is Input)
-                Inputs.Add(component as Input);
         }
 
+        public void RemoveComponents(ComponentBase component)
+        {
+            if (component is Viewer)
+                Viewer = component as Viewer;
+            else if (component is SelectionBox)
+                SelectionBox = component as SelectionBox;
+            else if (component is EditorControl)
+                Editor = component as EditorControl;
+            else if (component is ElementBase)
+                Elements.Remove(component as ElementBase);
+            else if (component is Input)
+                Flows.Add(component as Flow);
+        }
 
         public void OnMouseDown(MouseEventArgs e)
         {
@@ -98,11 +115,16 @@ namespace BlazorCanvas
 
         #region 数据流
 
+        [Parameter]
         public DataFlow DataFlow { get; set; }
 
 
-        public List<Input> Inputs { get; set; } = new List<Input>();
+        public List<Flow> Flows { get; set; } = new List<Flow>();
 
+        public void LayoutRedraw()
+        {
+
+        }
 
         #endregion
     }

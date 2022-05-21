@@ -8,9 +8,13 @@
 
         @Element
 
-        @foreach (var input in Inputs)
+        @{
+            Flow? previousFlow;
+        }
+
+        @foreach (var flow in DataFlow.Flows)
         {
-            <Input Data="input"></Input>
+            <Flow Data="flow"></Flow>
         }
 
         <SelectionBox></SelectionBox>

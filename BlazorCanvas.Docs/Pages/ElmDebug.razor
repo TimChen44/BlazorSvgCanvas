@@ -1,8 +1,25 @@
 ﻿@inherits ElementBase
 
-<rect x="@Rect.X" y="@Rect.Y" width="@Rect.Width" height="@Rect.Height"
+<rect x="@Rect.X" y="@Rect.Y" width="@Rect.W" height="@Rect.H"
 	  style="stroke:rgb(0,0,200);stroke-width:1;fill:red;fill-opacity:0.25" />
 @*
 
 <EditJoystick Element="@(this)"></EditJoystick>
 *@
+
+@code{
+	protected override void OnParametersSet()
+	{
+		base.OnParametersSet();
+	}
+
+	protected override void OnInitialized()
+	{
+		base.OnInitialized();
+	}
+
+	protected override void OnAfterRender(bool firstRender)
+	{
+		base.OnAfterRender(firstRender);
+	}
+}

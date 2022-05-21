@@ -1,6 +1,10 @@
-﻿@inherits ElementBase
+﻿@inherits FlowNode
 
 @*输入流，就是数据源的位置*@
 
-<rect x="@Rect.X" y="@Rect.Y" width="@Rect.Width" height="@Rect.Height"
+@if(Data!=null)
+{
+<rect x="@Rect.X" y="@Rect.Y" width="@Rect.W" height="@Rect.H"
 	  style="stroke:rgb(0,0,200);stroke-width:1;fill:red;fill-opacity:0.25" />
+
+}

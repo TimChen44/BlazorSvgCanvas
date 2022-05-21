@@ -1,9 +1,10 @@
-﻿@inherits ElementBase
+﻿@inherits FlowNode
 
 @*流的干，主线位置*@
 
-<h3>Trunk</h3>
-
-@code {
+@if (Data != null)
+{
+    <rect x="@Rect.X" y="@Rect.Y" width="@Rect.W" height="@Rect.H"
+      style="stroke:rgb(0,0,200);stroke-width:1;fill:blue;fill-opacity:0.25" />
 
 }
