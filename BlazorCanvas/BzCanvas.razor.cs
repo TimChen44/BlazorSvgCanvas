@@ -128,4 +128,15 @@ namespace BlazorCanvas
 
         #endregion
     }
+
+
+    public static class CountHelp
+    {
+        public static  int c = 1;
+
+        public static string getC()
+        {
+            return (c++).ToString();
+        }
+    }
 }

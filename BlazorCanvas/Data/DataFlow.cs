@@ -13,13 +13,7 @@ namespace BlazorCanvas.Data
 
     public class FlowData
     {
-        //public FlowData()
-        //{
-        //    DataFlow = dataFlow;
-        //}
-        public string Title { get; set; } = DateTime.Now.ToString("mm:ss");
-
-        //public DataFlow DataFlow { get; set; }
+        public string Title { get; set; } = CountHelp.getC();
 
         public InputData Input { get; set; }
         public List<TrunkData> Trunks { get; set; } = new List<TrunkData>();
@@ -28,39 +22,31 @@ namespace BlazorCanvas.Data
 
     public class InputData
     {
-        //public InputData(FlowData flow)
-        //{
-        //    Flow = flow;
-        //}
-        public string Title { get; set; } = DateTime.Now.ToString("mm:ss");
-
-        //public FlowData Flow { get; set; }
+        public string Title { get; set; } = CountHelp.getC();
     }
 
     public class TrunkData
     {
-        //public TrunkData(FlowData flow)
-        //{
-        //    Flow = flow;
-        //}
-        public string Title { get; set; } = DateTime.Now.ToString("mm:ss");
+        public string Title { get; set; } = CountHelp.getC();
 
-        //public FlowData Flow { get; set; }
+        public List<ImportData> Imports { get; set; } = new List<ImportData>();
 
-        public List<Import> Imports { get; set; } = new List<Import>();
-
-        public List<Fork> Forks { get; set; } = new List<Fork>();
+        public List<ForkData> Forks { get; set; } = new List<ForkData>();
     }
 
     public class OutputData
     {
-        //public OutputData(FlowData flow)
-        //{
-        //    Flow = flow;
-        //}
+        public string Title { get; set; } = CountHelp.getC();
 
-        public string Title { get; set; } = DateTime.Now.ToString("mm:ss");
+    }
 
-        //public FlowData Flow { get; set; }
+    public class ImportData
+    {
+        public string Title { get; set; } = CountHelp.getC();
+    }
+
+    public class ForkData
+    {
+        public string Title { get; set; } = CountHelp.getC();
     }
 }

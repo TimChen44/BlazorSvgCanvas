@@ -2,8 +2,18 @@
 
 @*导入流，从其他位置导入*@
 
-<h3>Import</h3>
+<g transform="translate(@Rect.LT.ToPoint())">
 
-@code {
+    @if (Data != null)
+    {
+        <line x1="@Rect.W" x2="@(Rect.W+60)" y1="@(Rect.H/2) " y2="@(Rect.H/2)" style="stroke:rgb(0,0,0);stroke-width:2" />
 
-}
+        <rect x="0" y="0" width="@(Rect.W)" height="@Rect.H"
+          style="stroke:rgb(0,0,200);stroke-width:1;fill:white;" />
+
+        <foreignObject x="5" y="5" width="@Rect.W" height="@Rect.H">
+            <div>源：@Data.Title <button style="margin-left:5px" class="btn btn-primary btn-sm" @onclick="@removeImport"><span style="line-height:10px;font-size:10px">删除</span></button></div>
+        </foreignObject>
+    }
+
+</g>

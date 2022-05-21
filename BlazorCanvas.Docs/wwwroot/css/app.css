@@ -8,6 +8,11 @@ a, .btn-link {
     color: #0077cc;
 }
 
+hr {
+    margin: 2px;
+    padding: 0;
+}
+
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;

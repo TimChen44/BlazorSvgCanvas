@@ -8,8 +8,8 @@ namespace BlazorCanvas.Element
 {
     public partial class Trunk
     {
-        public const int Height = 80;
-        public const int Width = 200;
+        public const int Height = 90;
+        public const int Width = 250;
 
         [Parameter]
         public TrunkData Data { get; set; }
@@ -29,6 +29,12 @@ namespace BlazorCanvas.Element
         {
             Flow.Data.Trunks.Remove(Data);
         }
+
+        public void removeImport()
+        {
+            Data.Imports.Add(new ImportData());
+        }
+
 
     }
 }

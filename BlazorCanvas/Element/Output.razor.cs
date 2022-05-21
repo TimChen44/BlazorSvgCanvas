@@ -8,8 +8,8 @@ namespace BlazorCanvas.Element
 {
     public partial class Output
     {
-        public const int Height = 80;
-        public const int Width = 200;
+        public const int Height = 90;
+        public const int Width = 250;
 
         [Parameter]
         public OutputData Data { get; set; }
