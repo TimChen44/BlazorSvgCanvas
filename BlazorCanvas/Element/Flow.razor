@@ -3,15 +3,8 @@
     <g transform="translate(@Rect.LT.ToPoint())">
 
         @*流区域*@
-        @if (Data.Input != null)
-        {
-            <Input Data="Data.Input"></Input>
-        }
-        else
-        {
-            <rect x="0" y="0" width="@Input.Width" height="@Input.Height"
-              style="stroke:rgb(0,0,200);stroke-width:1;fill:silver;fill-opacity:0.25" />
-        }
+
+        <Input Data="Data.Input"></Input>
 
         @if (Data?.Trunks != null)
         {
@@ -22,10 +15,7 @@
             }
         }
 
-        @if (Data.Output != null)
-        {
-            <Input Data="Data.Input" X="@(Input.Width + Data.Trunks.Count *Trunk.Width)"></Input>
-        }
+        <Output Data="Data.Output" X="@(Input.Width + Data.Trunks.Count *Trunk.Width)"></Output>
 
     </g>
 </CascadingValue>

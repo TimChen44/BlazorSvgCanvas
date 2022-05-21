@@ -19,5 +19,16 @@ namespace BlazorCanvas.Element
             base.OnInitialized();
             this.Rect = new Rect(0, 0, Width, Height);
         }
+
+        public void addOutput()
+        {
+            Flow.Data.Output = new OutputData();
+        }
+
+        public void removeOutput()
+        {
+            Flow.Data.Output = null;
+        }
+
     }
 }

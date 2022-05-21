@@ -142,6 +142,30 @@ namespace BlazorCanvas.Core
 
         #endregion
 
+        #region 四周中间的点
+
+        /// <summary>
+        /// 左中的Y值
+        /// </summary>
+        public int LCY =>  Y + H / 2;
+
+        /// <summary>
+        /// 上中的X值
+        /// </summary>
+        public int TCX => X + W / 2;
+
+        /// <summary>
+        /// 右中的Y值
+        /// </summary>
+        public int RCY => Y + H / 2;
+
+        /// <summary>
+        /// 下中的X值
+        /// </summary>
+        public int BCX => X + W / 2;
+
+        #endregion
+
         #region 四周坐标点
         //TODO:之后根据需要决定属性是否可以赋值
 

@@ -24,5 +24,14 @@ namespace BlazorCanvas.Element
             this.Rect = new Rect(0, 0, Width, Height);
         }
 
+        public void addInput()
+        {
+            Flow.Data.Input = new InputData();
+        }
+
+        public void addTrunk()
+        {
+            Flow.Data.Trunks.Insert(0, new TrunkData());
+        }
     }
 }

@@ -1,10 +1,23 @@
 ﻿@inherits FlowNode
 
 @*流的干，主线位置*@
+<g transform="translate(@Rect.LT.ToPoint())">
 
-@if (Data != null)
-{
-    <rect x="@Rect.X" y="@Rect.Y" width="@Rect.W" height="@Rect.H"
-      style="stroke:rgb(0,0,200);stroke-width:1;fill:blue;fill-opacity:0.25" />
+    @if (Data != null)
+    {
+        <line x1="0" x2="30" y1="@(Rect.H/2) " y2="@(Rect.H/2)" style="stroke:rgb(0,0,0);stroke-width:2" />
 
-}
+        <rect x="30" y="0" width="@(Rect.W-30)" height="@Rect.H"
+          style="stroke:rgb(0,0,200);stroke-width:1;fill:white;" />
+
+        <foreignObject x="35" y="0" width="@Rect.W" height="@Rect.H">
+            <div>@Data.Title</div>
+            <hr />
+            <button class="btn btn-primary btn-sm" @onclick="@addTrunk"><span style="line-height:10px;font-size:10px">添加节点</span></button>
+            <button class="btn btn-primary btn-sm" @onclick="@removeTrunk"><span style="line-height:10px;font-size:10px">删除</span></button>
+
+        </foreignObject>
+
+    }
+
+</g>

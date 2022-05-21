@@ -43,5 +43,7 @@ namespace BlazorCanvas.Element
             if (component is ElementBase elem && Elements.Contains(elem))
                 Elements.Remove(elem);
         }
+
+
     }
 }

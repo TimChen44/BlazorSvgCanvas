@@ -19,5 +19,16 @@ namespace BlazorCanvas.Element
             base.OnInitialized();
             this.Rect = new Rect(0, 0, Width, Height);
         }
+
+        public void addTrunk()
+        {
+            var index = Flow.Data.Trunks.IndexOf(Data);
+            Flow.Data.Trunks.Insert(index, new TrunkData());
+        }
+        public void removeTrunk()
+        {
+            Flow.Data.Trunks.Remove(Data);
+        }
+
     }
 }

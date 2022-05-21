@@ -2,9 +2,33 @@
 
 @*数据流，用来填写目标的组件*@
 
-@if (Data != null)
-{
-    <rect x="@Rect.X" y="@Rect.Y" width="@Rect.W" height="@Rect.H"
-      style="stroke:rgb(0,0,200);stroke-width:1;fill:red;fill-opacity:0.25" />
+<g transform="translate(@Rect.LT.ToPoint())">
 
-}
+    @if (Data != null)
+    {
+        <line x1="0" x2="30" y1="@(Rect.H/2) " y2="@(Rect.H/2)" style="stroke:rgb(0,0,0);stroke-width:2" />
+
+        <rect x="30" y="0" width="@(Rect.W-30)" height="@Rect.H"
+          style="stroke:rgb(0,0,200);stroke-width:1;fill:white;" />
+
+        <foreignObject x="35" y="0" width="@Rect.W" height="@Rect.H">
+            <div>目标：@Data.Title</div>
+            <hr />
+            <button class="btn btn-primary btn-sm" @onclick="@removeOutput"><span style="line-height:10px;font-size:10px">删除</span></button>
+        </foreignObject>
+
+    }
+    else if (Data == null && Flow.Data.Input != null)
+    {
+        <line x1="0" x2="30" y1="@(Rect.H/2) " y2="@(Rect.H/2)" style="stroke:rgb(0,0,0);stroke-width:2" />
+
+        <rect x="30" y="0" width="@(Rect.W-30)" height="@Rect.H"
+          style="stroke:rgb(0,0,200);stroke-width:1;fill:rgb(0,0,0);fill-opacity:0.25" />
+
+        <foreignObject x="35" y="0" width="@Input.Width" height="@Input.Height">
+            <div>目标</div>
+            <hr />
+            <button class="btn btn-primary btn-sm" @onclick="@addOutput"><span style="line-height:10px;font-size:10px">添加</span></button>
+        </foreignObject>
+    }
+</g>
